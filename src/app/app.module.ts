@@ -12,6 +12,7 @@ import { HomeComponent } from './home/home.component';
 import { EntrarComponent } from './entrar/entrar.component';
 import { CadastrarComponent } from './cadastrar/cadastrar.component';
 import { InicioComponent } from './inicio/inicio.component';
+import { TemaComponent } from './tema/tema.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { InicioComponent } from './inicio/inicio.component';
     HomeComponent,
     EntrarComponent,
     CadastrarComponent,
-    InicioComponent
+    InicioComponent,
+    TemaComponent
   ],
   imports: [
     BrowserModule,
