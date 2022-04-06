@@ -1,4 +1,9 @@
+import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from './../../service/auth.service';
+import { User } from './../../model/User';
 import { Component, OnInit } from '@angular/core';
+import { environment } from 'src/environments/environment.prod';
+
 
 @Component({
   selector: 'app-usuario-edit',
@@ -7,9 +12,61 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UsuarioEditComponent implements OnInit {
 
-  constructor() { }
+  user: User = new User()
+  idUser: number
+  confirmarSenha: string
+  tipoUsuario: string
 
-  ngOnInit(): void {
+  constructor(
+    private authService: AuthService,
+    private route: ActivatedRoute,
+    private router: Router,
+  ) { }
+
+  ngOnInit() {
+    window.scroll(0, 0)
+
+    if (environment.token == '') {
+      this.router.navigate(['/entrar'])
+    }
+
+    this.idUser = this.route.snapshot.params['id']
+    this.findByIdUser(this.idUser)
+  }
+
+  confirmSenha(event: any) {
+    this.confirmarSenha = event.target.value
+  }
+
+  tipoUser(event: any) {
+    this.tipoUsuario = event.target.value
+  }
+
+  atualizar() {
+    this.user.tipo = this.tipoUsuario
+
+    if (this.user.senha != this.confirmarSenha) {
+      alert('A senhas estão incorretas.')
+    } else {
+      this.authService.cadastrar(this.user).subscribe((resp: User) => {
+        this.user = resp
+        this.router.navigate(['/inicio'])
+        alert('Usuário atualizado com sucesso, faça o login novamente.')
+        environment.token = ''
+        environment.nome = ''
+        environment.foto = ''
+        environment.id = 0
+
+        this.router.navigate(['/entrar'])
+      })
+    }
+  }
+
+  findByIdUser(id: number) {
+    this.authService.getByIdUser(id).subscribe((resp: User) => {
+      this.user = resp
+    })
   }
 
 }
+
