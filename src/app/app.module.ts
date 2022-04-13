@@ -48,7 +48,7 @@ import { TemaService } from './service/tema.service';
     FormsModule        // dependencia
   ],
   providers: [{
-    provide: LocationStrategy && AuthService && PostagemService && TemaService,
+    provide: LocationStrategy,
 
     useClass: HashLocationStrategy
   }],

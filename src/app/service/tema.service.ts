@@ -4,6 +4,10 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Tema } from '../model/Tema';
 
+@Injectable({
+
+  providedIn: 'root'
+})
 
 export class TemaService {
 
