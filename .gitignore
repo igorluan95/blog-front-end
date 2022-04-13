@@ -1,5 +1,7 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
+.last 2 Safari major versions
+
 # compiled output
 /dist
 /tmp

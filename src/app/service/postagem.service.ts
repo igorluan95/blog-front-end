@@ -4,9 +4,7 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment.prod';
 import { Postagem } from '../model/Postagem';
 
-@Injectable({
-  providedIn: 'root'
-})
+
 export class PostagemService {
 
   constructor(
@@ -22,7 +20,7 @@ export class PostagemService {
   }
 
   getByIdPostagem(id: number): Observable<Postagem>{
-    return this.http.get<Postagem>(`https://deployblogpessoaligor.herokuapp.com//postagem/${id}`, this.token)
+    return this.http.get<Postagem>(`https://deployblogpessoaligor.herokuapp.com/postagem/${id}`, this.token)
   }
 
   postPostagem(postagem: Postagem) : Observable<Postagem>{

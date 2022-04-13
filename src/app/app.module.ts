@@ -18,6 +18,11 @@ import { TemaDeleteComponent } from './delete/tema-delete/tema-delete.component'
 import { PostagemEditComponent } from './edit/postagem-edit/postagem-edit.component';
 import { PostagemDeleteComponent } from './delete/postagem-delete/postagem-delete.component';
 import { UsuarioEditComponent } from './edit/usuario-edit/usuario-edit.component';
+import { Injectable } from '@angular/core';
+import { AuthService } from './service/auth.service';
+import { PostagemService } from './service/postagem.service';
+import { TemaService } from './service/tema.service';
+
 
 @NgModule({
   declarations: [
@@ -33,7 +38,8 @@ import { UsuarioEditComponent } from './edit/usuario-edit/usuario-edit.component
     TemaDeleteComponent,
     PostagemEditComponent,
     PostagemDeleteComponent,
-    UsuarioEditComponent
+    UsuarioEditComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -42,7 +48,8 @@ import { UsuarioEditComponent } from './edit/usuario-edit/usuario-edit.component
     FormsModule        // dependencia
   ],
   providers: [{
-    provide: LocationStrategy,
+    provide: LocationStrategy && AuthService && PostagemService && TemaService,
+
     useClass: HashLocationStrategy
   }],
   bootstrap: [AppComponent]
