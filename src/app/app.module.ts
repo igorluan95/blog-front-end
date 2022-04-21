@@ -22,6 +22,7 @@ import { Injectable } from '@angular/core';
 import { AuthService } from './service/auth.service';
 import { PostagemService } from './service/postagem.service';
 import { TemaService } from './service/tema.service';
+import { AlertasComponent } from './alertas/alertas.component';
 
 
 @NgModule({
@@ -39,6 +40,7 @@ import { TemaService } from './service/tema.service';
     PostagemEditComponent,
     PostagemDeleteComponent,
     UsuarioEditComponent,
+    AlertasComponent,
 
   ],
   imports: [
