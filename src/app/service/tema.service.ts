@@ -31,10 +31,6 @@ export class TemaService {
 
   }
 
-  getByIdTema(id: number):Observable<Tema>{
-    return this.http.get<Tema>(`https://deployblogpessoaligor.herokuapp.com/tema/${id}`,this.token)
-  }
-
   putTema(tema:Tema): Observable<Tema>{
     return this.http.put<Tema>('https://deployblogpessoaligor.herokuapp.com/tema',tema, this.token)
 
@@ -45,7 +41,12 @@ export class TemaService {
 
   }
 
+  getByIdTema(id: number):Observable<Tema>{
+    return this.http.get<Tema>(`https://deployblogpessoaligor.herokuapp.com/tema/${id}`,this.token)
+  }
 
-
+  getByNomeTema(nome: string): Observable<Tema[]>{
+    return this.http.get<Tema[]>(`https://blogpessoaljamario.herokuapp.com/tema/nome/${nome}`, this.token)
+  }
 
 }
