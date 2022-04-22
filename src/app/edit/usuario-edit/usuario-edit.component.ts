@@ -1,3 +1,4 @@
+import { AlertasService } from './../../service/alertas.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from './../../service/auth.service';
 import { User } from './../../model/User';
@@ -21,6 +22,8 @@ export class UsuarioEditComponent implements OnInit {
     private authService: AuthService,
     private route: ActivatedRoute,
     private router: Router,
+    private alertas: AlertasService
+
 
   ) { }
 
@@ -47,12 +50,12 @@ export class UsuarioEditComponent implements OnInit {
     this.user.tipo = this.tipoUsuario
 
     if (this.user.senha != this.confirmarSenha) {
-      alert('A senhas estão incorretas.')
+      this.alertas.showAlertDanger('As senhas precisam ser iguais.')
     } else {
-      this.authService.cadastrar(this.user).subscribe((resp: User) => {
+      this.authService.atualizar(this.user).subscribe((resp: User) => {
         this.user = resp
         this.router.navigate(['/inicio'])
-        alert('Usuário atualizado com sucesso, faça o login novamente.')
+        this.alertas.showAlertInfo('Dados atualizados com sucesso, faça o login novamente.')
         environment.token = ''
         environment.nome = ''
         environment.foto = ''

@@ -23,6 +23,8 @@ import { AuthService } from './service/auth.service';
 import { PostagemService } from './service/postagem.service';
 import { TemaService } from './service/tema.service';
 import { AlertasComponent } from './alertas/alertas.component';
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { OrderModule } from 'ngx-order-pipe';
 
 
 @NgModule({
@@ -47,7 +49,9 @@ import { AlertasComponent } from './alertas/alertas.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule        // dependencia
+    FormsModule,        // dependencia
+    ModalModule.forRoot(),
+    OrderModule
   ],
   providers: [{
     provide: LocationStrategy,

@@ -13,7 +13,6 @@ export class AlertasComponent implements OnInit {
   @Input() type: string = 'success'
 
   constructor(
-git 
     public modal: BsModalRef
 
   ) { }
