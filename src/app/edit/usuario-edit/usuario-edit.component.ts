@@ -21,6 +21,7 @@ export class UsuarioEditComponent implements OnInit {
     private authService: AuthService,
     private route: ActivatedRoute,
     private router: Router,
+
   ) { }
 
   ngOnInit() {
