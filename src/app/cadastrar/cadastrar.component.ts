@@ -2,6 +2,8 @@ import { AuthService } from './../service/auth.service';
 import { User } from './../model/User';
 import { Component, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
+import { AlertasService } from '../service/alertas.service';
+
 
 @Component({
   selector: 'app-cadastrar',
@@ -13,10 +15,15 @@ export class CadastrarComponent implements OnInit {
   user: User = new User
   confirmarSenha: string
   tipoUsuario: string
+  fotoUsuario: string
+  senhaAdm: string
+  okAdm = false
 
   constructor(
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private alertas: AlertasService
+
      ) { }
 
     ngOnInit(){    // quando a pagina iniciar, faça tal coisa
@@ -33,21 +40,61 @@ export class CadastrarComponent implements OnInit {
         this.tipoUsuario = event.target.value
       }
 
-      cadastrar() {
-        this.user.tipo = this.tipoUsuario
 
-          if(this.user.senha != this.confirmarSenha){
-            alert('As senhas estão incorretas')
+  validarFoto(event: any) {
+    this.fotoUsuario = event.target.value
+  }
+
+  receberSenhaAdm(event:any) {
+    this.senhaAdm = event.target.value
+  }
+
+  validarSenhaAdm() {
+    if(this.senhaAdm == "1234") {
+      this.okAdm = true
+      this.alertas.showAlertSuccess("Código correto, continue com o cadastro de Administrador")
+    }
+    else {
+      this.alertas.showAlertDanger("Código incorreto, tente novamente")
+      this.okAdm = false
+    }
+    return this.okAdm
+  }
+
+
+      cadastrar() {
+
+        if (this.user.senha != this.confirmarSenha) {
+          this.alertas.showAlertDanger('As senhas estão incorretas!')
+        } else if (this.tipoUsuario != "Normal" && this.tipoUsuario != "Administrador") {
+          this.alertas.showAlertDanger('Selecione o tipo de perfil!')
+        } else if (this.tipoUsuario == "Administrador" && this.okAdm == false ) {
+          this.alertas.showAlertDanger('Insira o código de Administrador!')
+        }
+
+        else {
+
+          if (this.fotoUsuario == null) {
+            this.fotoUsuario = "https://i.imgur.com/wBsUWjq.png"
           }
-          else{
+
+          this.user.tipo = this.tipoUsuario
+          this.user.foto = this.fotoUsuario
           this.authService.cadastrar(this.user).subscribe((resp: User) => {
             this.user = resp
+            this.alertas.showAlertSuccess('Usuário cadastrado com sucesso!')
             this.router.navigate(['/entrar'])
-            alert('Usuário cadastrado com sucesso!')
-          })
+          },
+
+            erro => {
+              if (erro.status == 500 || erro.status == 401 || erro.status == 400) {
+                this.alertas.showAlertDanger('Campos incorretos ou usuário já cadastrado')
+              }
+            }
+
+          )
         }
-        }
 
-}
+      }
 
-
+    }
