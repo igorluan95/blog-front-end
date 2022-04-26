@@ -1,12 +1,12 @@
+import { Tema } from './../model/Tema';
 import { PostagemService } from './../service/postagem.service';
 import { Router } from '@angular/router';
-import { environment } from './../../environments/environment.prod';
 import { Component, OnInit } from '@angular/core';
 import { Postagem } from '../model/Postagem';
 import { TemaService } from '../service/tema.service';
-import { Tema } from '../model/Tema';
 import { User } from '../model/User';
 import { AuthService } from '../service/auth.service';
+import { environment } from 'src/environments/environment.prod';
 
 @Component({
   selector: 'app-inicio',
@@ -20,19 +20,25 @@ export class InicioComponent implements OnInit {
   postagem: Postagem = new Postagem()
   listaPostagens: Postagem []
 
+  tema: Tema = new Tema()
   listaTemas: Tema[]
-  tema: Tema = new Tema ()
   idTema: number
 
   user: User = new User()
   idUser = environment.id
+
+  titulo: string;
+  temas: string;
+
+  key = "data";
+  reverse = true;
 
 
   constructor(
     private router: Router,
     private postagemService: PostagemService,
     private temaService: TemaService,
-    private authService: AuthService
+    public authService: AuthService
 
   ) { }
 
@@ -70,6 +76,39 @@ export class InicioComponent implements OnInit {
       this.user = resp
     })
   }
+
+  findByTitulo() {
+
+    if (this.titulo == '') {
+
+      this.getAllPostagens();
+
+    } else {
+      this.postagemService.getByTituloPostagem(this.titulo).subscribe((resp: Postagem[]) => {
+
+        this.listaPostagens = resp;
+
+      });
+    }
+  }
+
+  findByTema(){
+
+    if(this.temas == ''){
+
+      this.getAllTemas()
+
+    }else{
+
+      this.temaService.getByNomeTema(this.temas).subscribe((resp: Tema[]) =>{
+
+        this.listaTemas = resp;
+
+      })
+    }
+  }
+
+
 
 
   publicar(){
