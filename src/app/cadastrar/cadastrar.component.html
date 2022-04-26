@@ -1,3 +1,6 @@
+
+
+
 <div class="container-fluid">
 
     <div class="row">
@@ -41,20 +44,22 @@
                           name="tipo" id="tipo">
                           <option value="tipo" disabled selected>Tipo de perfil </option>
                           <option value="Normal">Normal</option>
-                          <option value="Administrador">Adiminstrador</option>
+                          <option value="Administrador">Adminstrador</option>
                       </select>
 
                   </div>
 
-                    <div class="justify-content-center">
+                    <div class="">
                       <div *ngIf="tipoUsuario === 'Administrador'"  class="form-group">
                         <input (input)="receberSenhaAdm($event)" type="password" class="form-control" id="titulo"
-                        placeholder="Coloque o código de Adm antes clicar em cadastrar">
+                        placeholder="Antes de prosseguir coloque o código de Adm e clique em confirmar o código">
 
                           <button (click)="validarSenhaAdm()" type="submit"
                               class="btn btn-success roboto text-white mt-3">Confirmar o código</button>
 
                       </div>
+                    </div>
+                      <div class="jusfity-content-flex-end ">
 
                     <div class="d-flex justify-content-center">
                         <button type="submit" routerLink='/entrar' class="btn btn-danger mr-4">Cancelar</button>

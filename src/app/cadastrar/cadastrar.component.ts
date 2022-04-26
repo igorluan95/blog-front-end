@@ -75,8 +75,10 @@ export class CadastrarComponent implements OnInit {
         else {
 
           if (this.fotoUsuario == null) {
-            this.fotoUsuario = "https://i.imgur.com/wBsUWjq.png"
+
+            this.fotoUsuario = "https://i.imgur.com/k4Iuelh.jpg"
           }
+
 
           this.user.tipo = this.tipoUsuario
           this.user.foto = this.fotoUsuario
@@ -88,7 +90,7 @@ export class CadastrarComponent implements OnInit {
 
             erro => {
               if (erro.status == 500 || erro.status == 401 || erro.status == 400) {
-                this.alertas.showAlertDanger('Campos incorretos ou usuário já cadastrado')
+                this.alertas.showAlertDanger('Campos incorretos ou usuário já cadastrado!')
               }
             }
 
