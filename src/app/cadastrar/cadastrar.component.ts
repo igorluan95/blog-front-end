@@ -3,6 +3,7 @@ import { User } from './../model/User';
 import { Component, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertasService } from '../service/alertas.service';
+import { environment } from 'src/environments/environment.prod';
 
 
 @Component({
@@ -17,6 +18,7 @@ export class CadastrarComponent implements OnInit {
   tipoUsuario: string
   fotoUsuario: string
   senhaAdm: string
+  nome: String
   okAdm = false
 
   constructor(
@@ -26,9 +28,11 @@ export class CadastrarComponent implements OnInit {
 
      ) { }
 
-    ngOnInit(){    // quando a pagina iniciar, faça tal coisa
-
-       window.scroll(0,0)   //ficar no y=0 e x=0, ficar no topo
+    ngOnInit(){
+      if(environment.token != ''){
+        this.router.navigate(['/inicio'])
+      }
+       window.scroll(0,0)
 
     }
 
@@ -45,6 +49,13 @@ export class CadastrarComponent implements OnInit {
     this.fotoUsuario = event.target.value
   }
 
+  validarNome(event: any) {
+    this.nome = event.target.value
+  }
+
+  validarUsuario(event: any) {
+    this.user = event.target.value
+  }
   receberSenhaAdm(event:any) {
     this.senhaAdm = event.target.value
   }
@@ -64,12 +75,20 @@ export class CadastrarComponent implements OnInit {
 
       cadastrar() {
 
-        if (this.user.senha != this.confirmarSenha) {
-          this.alertas.showAlertDanger('As senhas estão incorretas!')
-        } else if (this.tipoUsuario != "Normal" && this.tipoUsuario != "Administrador") {
+        if (this.tipoUsuario != "Normal" && this.tipoUsuario != "Administrador") {
           this.alertas.showAlertDanger('Selecione o tipo de perfil!')
-        } else if (this.tipoUsuario == "Administrador" && this.okAdm == false ) {
+        }
+        else if (this.tipoUsuario == "Administrador" && this.okAdm == false ) {
           this.alertas.showAlertDanger('Insira o código de Administrador!')
+        }
+        else if (this.user.nome == '' ) {
+          this.alertas.showAlertDanger('Insira um nome válido!')
+        }
+        else if (this.user.usuario == '') {
+          this.alertas.showAlertDanger('Insira um e-mail válido!')
+        }
+        else if (this.user.senha != this.confirmarSenha) {
+          this.alertas.showAlertDanger('As senhas estão incorretas!')
         }
 
         else {
