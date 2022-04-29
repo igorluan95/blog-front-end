@@ -1,77 +1,92 @@
+<div class="container-fluid fd-cinza">
 
-<div class="container-fluid">
+    <div class="row ">
+      <div class="col-4"></div>
+        <div class="col-4 ">
 
-    <div class="row">
+            <div class="row d-flex justify-content-center  mt-5 ">
+                <div class="col-md-10 card-cadastro">
 
-        <div class="col-md-6" id="img-bg"></div>
+                    <div class="text-center mb-3 ">Cadastro</div>
 
-        <div class="col-md-6 ">
 
-            <div class="row d-flex justify-content-center">
-                <div class="col-md-10">
-
-                    <h1 class="text-center">Cadastro</h1>
-
-                    <div class="form-group">
-                      <label for="nome">Tipo de Perfil</label>
-                      <select (keydown.enter)="cadastrar()" (change)="tipoUser($event)" class="form-control "
+                    <div class="form-group " >
+                      <label for="nome" required>Tipo de Perfil</label>
+                      <select (keydown.enter)="cadastrar()" (change)="tipoUser($event)"  class="form-control"
                           name="tipo" id="tipo">
-                          <option value="tipo" disabled selected>Tipo de perfil </option>
+                          <option value="tipo" required onchange="this.value = this.value.trim()" disabled selected>Tipo de perfil </option>
                           <option value="Normal">Normal</option>
                           <option value="Administrador">Adminstrador</option>
                       </select>
 
                   </div>
 
-                    <div class="">
-                      <div *ngIf="tipoUsuario === 'Administrador'"  class="form-group">
-                        <input (input)="receberSenhaAdm($event)" type="password" class="form-control" id="titulo"
-                        placeholder="Coloque o código necessário para cadastro tipo Administrador">
 
+                    <form *ngIf="tipoUsuario === 'Administrador'">
+                        <input (input)="receberSenhaAdm($event)" type="password" class="form-control " id="titulo"
+                        placeholder="Acesso restrito! Insira o código do Administrador!">
+                        <div class="jusfity-content-flex-end ">
                           <button (click)="validarSenhaAdm()" type="submit"
-                              class="btn btn-success align-center roboto text-white mt-3">Confirmar o código</button>
+                              class="btn btn-success align-center roboto text-white mt-3"> Validar código</button>
+                        </div>
+                     </form>
 
-                      </div>
-                    </div>
 
-                    <div class="form-group">
+                    <div class = "input">
+                    <form name="nome" id="nome" method="post" autocomplete="off" action="">
                         <label for="nome">Nome</label>
-                        <input [(ngModel)]='user.nome' class="form-control" type="text" name="nome" id="usuario" placeholder="Seu nome">
-                    </div>
+                        <input [(ngModel)]='user.nome' pattern="[A-Za-z]{3}" class="form-control"
+                         type="text" name="nome" onchange="this.value = this.value.trim()"
+                        id="usuario" placeholder="Insira seu nome">
+                        <span>Insira um nome válido</span>
+                    </form>
+                  </div>
 
-                    <div class="form-group">
-                        <label for="usuario">E-mail</label>
-                        <input [(ngModel)]='user.usuario' class="form-control" type="text" name="usuario" id="usuario" placeholder="Seu e-mail">
-                    </div>
-                    <div class="form-group">
-                        <label for="foto">Link da Foto (Opcional)</label>
+                  <div class = "input">
+                    <form name="email" id="email" method="post" autocomplete="off" action="">
+                      <label for="email">E-mail</label>
+                      <input [(ngModel)]='user.usuario' pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"  class="form-control"
+                      type="text" name="email" onchange="this.value = this.value.trim()"
+                      id="email" placeholder="Insira seu e-mail">
+                      <span>Insira um e-mail válido</span>
+
+                    </form>
+                  </div>
+
+
+                    <form name="foto" id="foto" method="post" autocomplete="off" action="">
+                      <label for="foto">Link da Foto (Opcional)</label>
                         <input [(ngModel)]='user.foto' class="form-control" type="text" name="foto" id="foto" placeholder="Link da sua foto">
+                    </form>
+
+                    <div class=" input">
+                    <form name="senha" id="senha" method="post" autocomplete="off" action="">
+                      <label for="senha">Senha</label>
+                        <input [(ngModel)]='user.senha'class="form-control" onchange="this.value = this.value.trim()"pattern=".{6,}"  type="password" name="senha" id="senha" placeholder="Sua senha">
+                      <span>Insira uma senha válida</span>
+                      </form>
                     </div>
 
-                    <div class="form-group">
-                        <label for="senha">Senha</label>
-                        <input (input)='confirmSenha($event)'class="form-control" type="password" name="senha" id="senha" placeholder="Sua senha">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="confirmSenha">Confirmar Senha</label>
-                        <input [(ngModel)]='user.senha' class="form-control" type="password" name="senha" id="confirmSenha"
+                    <form name="confirmarSenha" id=confirmarSenha method="post" autocomplete="off" action="">
+                      <label for="confirmSenha">Confirmar Senha</label>
+                        <input (input)='confirmSenha($event)' class="form-control" type="password" name="senha" id="confirmSenha"
                             placeholder="Confirme sua senha">
-                    </div>
+                    </form>
 
-                      <div class="jusfity-content-flex-end ">
+                      <div class="jusfity-content-flex-end mb-5 ">
 
                     <div class="d-flex justify-content-center">
-                        <button type="submit" routerLink='/entrar' class="btn btn-danger mr-4">Cancelar</button>
+                        <button type="submit" routerLink='/entrar' class="btn btn-branco mr-4">Cancelar</button>
                         <button type="submit" class="btn btn-success " (click)='cadastrar()'>Cadastrar</button>
                     </div>
 
 
                 </div>
-            </div>
+              </div>
+              <div class="col-4"></div>
 
-        </div>
 
     </div>
 
 </div>
+

@@ -1,11 +1,41 @@
-#img-bg{
-    background-image: url(https://i.imgur.com/d5bMdDJ.jpg);
-
-    min-height: 635px;
-
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
+.fd-cinza{
+  background-color: rgba(161, 161, 161, 0.363);
+  height: 100%;
 }
+
+.texto-titulo{
+  color: #000000;
+  font-size: 20px;
+}
+
+.card-cadastro{
+  border-radius: 10px;
+  width: 100%;
+  margin-top: 15px;
+  margin-bottom: 50px;
+  background-color: white;
+  border-color: rgb(87, 86, 86);
+
+}
+
+.input span {
+  color: rgb(209, 18, 18);
+  display: none
+}
+
+.input input:invalid + span {
+  display: inline
+}
+
+.btn-branco {
+  background: white;
+  border-color: #102d38;
+  border-radius: 40px;
+}
+
+.btn-branco:hover {
+  background: #eeeeee;
+}
+
 
 
