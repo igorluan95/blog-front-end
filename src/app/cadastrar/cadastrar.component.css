@@ -1,20 +1,19 @@
-.fd-cinza{
-  background-color: rgba(161, 161, 161, 0.363);
-  height: 100%;
-}
+.fd-azul{
+  background-color: #102d38c5;
 
-.texto-titulo{
-  color: #000000;
-  font-size: 20px;
 }
 
 .card-cadastro{
   border-radius: 10px;
-  width: 100%;
+  height: auto;
+  width: 90%;
   margin-top: 15px;
   margin-bottom: 50px;
+  padding-left: 3%;
+  padding-right: 3%;
   background-color: white;
-  border-color: rgb(87, 86, 86);
+  border-color: rgb(0, 0, 0);
+  box-shadow: 0 0 1em rgba(212, 211, 211, 0.678);
 
 }
 
@@ -27,15 +26,54 @@
   display: inline
 }
 
+
+
 .btn-branco {
   background: white;
   border-color: #102d38;
-  border-radius: 40px;
+  border-radius: 10px;
 }
 
 .btn-branco:hover {
-  background: #eeeeee;
+  background: #d6d6d6;
+}
+
+.btn-azul {
+  background: #102d38;
+  border-color: #102d38;
+  border-radius: 10px;
+}
+
+.btn-azul:hover {
+  background: #1c5e79;
+  box-shadow: 0 0 2em rgba(212, 211, 211, 0.678);
+
 }
 
 
+.centralizar{
 
+    text-align: center;
+
+}
+
+.direita{
+
+    text-align:right ;
+
+}
+
+
+.text-branco{
+  color:white;
+  font-weight:400;
+}
+
+.text-azul{
+  color:#102d38;
+
+}
+
+label{
+  font-weight:600 ;
+}

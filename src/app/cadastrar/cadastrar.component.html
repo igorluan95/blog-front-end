@@ -1,35 +1,34 @@
-<div class="container-fluid fd-cinza">
+<body class="fd-azul">
 
-    <div class="row ">
-      <div class="col-4"></div>
-        <div class="col-4 ">
+<div class="container ">
 
-            <div class="row d-flex justify-content-center  mt-5 ">
-                <div class="col-md-10 card-cadastro">
+    <div class="row justify-content-center ">
+        <div class=" col-lg-7 col-md-10 col-sm-3 col-xs-3 ">
 
-                    <div class="text-center mb-3 ">Cadastro</div>
+            <div class="row d-flex justify-content-center  mt-3">
+                <div class="card-cadastro">
 
+                  <h2 class="centralizar text-azul mt-3 mb-3">Cadastre-se</h2><hr>
 
                     <div class="form-group " >
-                      <label for="nome" required>Tipo de Perfil</label>
-                      <select (keydown.enter)="cadastrar()" (change)="tipoUser($event)"  class="form-control"
+                      <label for="nome"  required>Tipo de Perfil</label>
+                      <select required (keydown.enter)="cadastrar()" (change)="tipoUser($event)"  class="form-control select"
                           name="tipo" id="tipo">
-                          <option value="tipo" required onchange="this.value = this.value.trim()" disabled selected>Tipo de perfil </option>
-                          <option value="Normal">Normal</option>
-                          <option value="Administrador">Adminstrador</option>
+                          <option value="Normal" select>Normal</option>
+                          <option value="Administrador">Administrador</option>
                       </select>
 
                   </div>
 
 
-                    <form *ngIf="tipoUsuario === 'Administrador'">
+                    <form action="" method="post" *ngIf="tipoUsuario === 'Administrador'">
                         <input (input)="receberSenhaAdm($event)" type="password" class="form-control " id="titulo"
-                        placeholder="Acesso restrito! Insira o código do Administrador!">
-                        <div class="jusfity-content-flex-end ">
+                        placeholder="Insira o código de Administrador">
+                        <div class="direita ">
                           <button (click)="validarSenhaAdm()" type="submit"
-                              class="btn btn-success align-center roboto text-white mt-3"> Validar código</button>
-                        </div>
-                     </form>
+                              class="btn btn-azul text-branco align-center roboto text-white mt-3">Validar código</button>
+                            </div>
+                            </form>
 
 
                     <div class = "input">
@@ -73,20 +72,23 @@
                             placeholder="Confirme sua senha">
                     </form>
 
-                      <div class="jusfity-content-flex-end mb-5 ">
+                      <div class="jusfity-content-flex-end mb-2 ">
 
-                    <div class="d-flex justify-content-center">
-                        <button type="submit" routerLink='/entrar' class="btn btn-branco mr-4">Cancelar</button>
-                        <button type="submit" class="btn btn-success " (click)='cadastrar()'>Cadastrar</button>
+                    <div class="centralizar mp-3">
+                        <button type="submit" routerLink='/entrar' class="btn btn-branco mr-1 ml-1 mb-2">Cancelar</button>
+                        <button type="submit" class="btn btn-azul mb-2 mr-1 ml-1  text-branco " (click)='cadastrar()'>Cadastrar</button>
                     </div>
 
 
                 </div>
               </div>
-              <div class="col-4"></div>
 
 
     </div>
 
 </div>
+</div>
+</div>
 
+
+</body>

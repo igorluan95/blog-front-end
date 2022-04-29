@@ -53,7 +53,7 @@ export class CadastrarComponent implements OnInit {
       this.alertas.showAlertSuccess("Código correto, continue com o cadastro de Administrador")
     }
     else {
-      this.alertas.showAlertDanger("Acesso negado, tente novamente ou mude para tipo Normal")
+      this.alertas.showAlertDanger("Acesso negado, insira o código correto ou mude para tipo de perfil Normal")
       this.respSenha = false
     }
     return this.respSenha
@@ -61,11 +61,8 @@ export class CadastrarComponent implements OnInit {
 
   cadastrar() {
 
-    if (this.tipoUsuario != "Normal" && this.tipoUsuario != "Administrador") {
-      this.alertas.showAlertDanger('Selecione o tipo de perfil!')
-    }
-    else if (this.tipoUsuario == "Administrador" && this.respSenha == false) {
-      this.alertas.showAlertDanger('Insira e confirme o código de Administrador!')
+    if (this.tipoUsuario == "Administrador" && this.respSenha == false) {
+      this.alertas.showAlertDanger('Insira e valide o código de Administrador!')
     }
     else if (this.user.senha != this.confirmarSenha) {
       this.alertas.showAlertDanger('As senhas estão divergentes!')
